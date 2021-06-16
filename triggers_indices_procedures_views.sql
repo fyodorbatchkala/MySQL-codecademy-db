@@ -1,17 +1,17 @@
--- ИНДЕКСЫ
+-- INDICES
 
--- Индекс для поиска курса по названию
+-- Index for finding a course by title
 CREATE INDEX courses_course_name_idx ON courses(course_name);
 
--- Индекс для поиска по адресу электронной почты
+-- Index to search by email address
 CREATE INDEX users_email_idx ON users(email);
 
 
 
 
--- ХРАНИМЫЕ ПРОЦЕДУРЫ
+-- STORED PROCEDURES
 
--- Процедура выдаёт 10 самых коротких курсов
+-- The procedure produces the 10 shortest courses
 DROP PROCEDURE IF EXISTS short_courses_description;
 delimiter //
 CREATE PROCEDURE short_courses_description()
@@ -23,7 +23,7 @@ delimiter ;
 CALL short_courses_description();
 
 
--- Процедура выдаёт все курсы, длительностью меньше или равной определенному числу часов (заданному в параметре)
+-- The procedure returns all courses lasting less than or equal to a certain number of hours (specified in the parameter)
 DROP PROCEDURE IF EXISTS courses_by_hours_description;
 delimiter //
 CREATE PROCEDURE courses_by_hours_description(hours INT)
@@ -37,9 +37,9 @@ CALL courses_by_hours_description(4);
 
 
 
--- ТРИГГЕРЫ
+-- TRIGGERS
 
--- Триггер на вставку в таблицу courses
+-- Trigger for insertion into courses table
 DROP TRIGGER IF EXISTS trigger_insert_null;
 delimiter //
 CREATE TRIGGER trigger_insert_null BEFORE INSERT ON courses
@@ -52,7 +52,7 @@ END //
 delimiter ;
 
 
--- Триггер на обновление таблицы courses
+-- Trigger to update the courses table
 DROP TRIGGER IF EXISTS trigger_update_null;
 delimiter //
 CREATE TRIGGER trigger_update_null BEFORE UPDATE ON courses
@@ -64,23 +64,23 @@ BEGIN
 END //
 delimiter ;
 
--- Проверка
+-- Check
 SHOW TRIGGERS;
 
 
 
 
--- ПРЕДСТАВЛЕНИЯ
+-- Views
 
--- Представление, которое выводит имена и фамилии всех пользователей
+-- View that displays the first and last names of all users
 CREATE OR REPLACE VIEW all_users AS SELECT CONCAT(first_name, ' ', last_name) AS fullname FROM users ORDER BY fullname;
 
--- Проверка
+-- Check
 SELECT * FROM all_users LIMIT 10;
 
 
 
--- Представление, которое выводит количество курсов на направление (Computer science, web-development ...)
+-- A view that displays the number of courses per direction (Computer science, web-development ...)
 CREATE OR REPLACE VIEW num_courses_per_subject AS SELECT subject_id, subjects.subject_name, COUNT(*) AS number_of_courses
 	FROM courses
 	JOIN subjects 
@@ -88,9 +88,5 @@ CREATE OR REPLACE VIEW num_courses_per_subject AS SELECT subject_id, subjects.su
 	GROUP BY subject_id
 	ORDER BY subject_id;
 
--- Проверка
+-- Check
 SELECT * FROM num_courses_per_subject;
-
-
-
-
