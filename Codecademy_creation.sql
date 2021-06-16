@@ -1,10 +1,8 @@
--- Создаём БД
+-- Creating the database
 CREATE DATABASE codecademy;
-
--- Делаем её текущей
 USE codecademy;
 
--- Создаём таблицу пользователей
+-- Creating users table
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "Идентификатор строки", 
@@ -17,7 +15,7 @@ CREATE TABLE users (
 ) COMMENT "Пользователи"; 
 
 
--- Таблица профилей
+-- Creating profiles table
 DROP TABLE IF EXISTS profiles;
 CREATE TABLE profiles (
   user_id INT UNSIGNED NOT NULL PRIMARY KEY COMMENT "Ссылка на пользователя", 
@@ -30,7 +28,7 @@ CREATE TABLE profiles (
 ) COMMENT "Профили"; 
 
 
--- Таблица курсов
+-- Creating courses table
 DROP TABLE IF EXISTS courses;
 CREATE TABLE courses (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "идентификатор курса",
@@ -45,7 +43,7 @@ CREATE TABLE courses (
 );
 
 
--- Таблица связи пользователей и курсов
+-- Connecting users and courses tables
 DROP TABLE IF EXISTS courses_users;
 CREATE TABLE courses_users (
   course_id INT UNSIGNED NOT NULL COMMENT "ссылка на курс",
@@ -55,7 +53,7 @@ CREATE TABLE courses_users (
 ) COMMENT "ученики курсов, связь между курсами и учениками";
 
 
--- Таблица карьерных путей
+-- Creating career paths table
 DROP TABLE IF EXISTS career_paths;
 CREATE TABLE career_paths (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "идентификатор строки",
@@ -65,7 +63,7 @@ CREATE TABLE career_paths (
 );
 
 
--- Таблица связи пользователей и курсов
+-- Connecting users and "career paths" tables
 DROP TABLE IF EXISTS career_paths_users;
 CREATE TABLE career_paths_users (
   career_paths_id INT UNSIGNED NOT NULL COMMENT "ссылка на курс",
@@ -75,7 +73,7 @@ CREATE TABLE career_paths_users (
 ) COMMENT "ученики карьерных путей, связь между карьерными путями и учениками";
 
 
--- Таблица направлений курсов
+-- Creating course subjects table
 DROP TABLE IF EXISTS subjects;
 CREATE TABLE subjects (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "идентификатор строки",
@@ -85,7 +83,7 @@ CREATE TABLE subjects (
 );
 
 
--- Таблица языков программирования
+-- Creating programming languages table
 DROP TABLE IF EXISTS languages;
 CREATE TABLE languages (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT "идентификатор строки",
@@ -95,7 +93,7 @@ CREATE TABLE languages (
 );
 
 
--- Таблица постов
+-- Creating posts table
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -108,7 +106,7 @@ CREATE TABLE posts (
 );
 
 
--- Таблица особенностей курса
+-- Creating course features table
 DROP TABLE IF EXISTS course_features;
 CREATE TABLE course_features (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
