@@ -1,6 +1,7 @@
-# MySQL-codecademy-db
+# "Relational databases. Basics. MySQL" course Final Project
+# (Feb - Mar 2021)
 
-This is a project I completed after a course # "Relational databases. Basics. MySQL". #
+This is a project I completed after a course "Relational databases. Basics. MySQL".
 
 The goal was to describe the storage model of a popular website: movie search, booking.com, wikipedia, online store.
 
