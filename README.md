@@ -1,5 +1,5 @@
 # "Relational databases. Basics. MySQL" course Final Project
-# (Feb - Mar 2021)
+### Course dates (Feb - Mar 2021)
 
 This is a project I completed after a course "Relational databases. Basics. MySQL".
 
