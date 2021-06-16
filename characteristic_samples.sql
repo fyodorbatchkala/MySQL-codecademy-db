@@ -1,27 +1,27 @@
--- СКРИПТЫ ХАРАКТЕРНЫХ ВЫБОРОК (группировки есть в join-запросах)
+-- SCRIPTS OF CHARACTERISTIC SAMPLES
 
--- БАЗОВЫЕ ЗАПРОСЫ
+-- BASIC QUIRIES
 
--- Курсы, относящиеся к 4 карьерному пути
+-- Courses ftom the 4th career path
 SELECT * FROM courses
 	WHERE career_path_id = 4;
 
 
--- Пользователи, которые учатся на 2 карьерном пути
+-- Users who are learning on 2 career paths
 SELECT user_id FROM career_paths_users
 	WHERE career_paths_id = 2;
 
 
--- Вывод имени и фамилии пользователя
+-- Displaying the user's first and last name
 SELECT CONCAT(first_name, ' ', last_name) AS fullname  
   FROM users;
   
 	
  
  
--- ВЛОЖЕННЫЙ ЗАПРОС
+-- COMPLEX QUERY
 
--- Вывод количества мужчин и женщин на курсах с помощью вложенного запроса
+-- Displaying the number of men and women in courses using a nested query
 SELECT
 	(SELECT gender FROM profiles WHERE user_id = courses_users.user_id) AS gender, 
 	COUNT(*) AS total
@@ -32,9 +32,9 @@ SELECT
 
 
 
--- ИСПОЛЬЗОВАНИЕ JOIN
+-- USING JOIN
 
--- Вывод названий новых курсов (New), длительностью более 35 часов
+-- Displaying the names of new courses (New), lasting more than 35 hours
 SELECT course_length_hours, course_name 
 	FROM courses
 	JOIN course_features
@@ -42,7 +42,7 @@ SELECT course_length_hours, course_name
 		AND feature_name = 'New';
 
 	
--- Вывод пользовательских идентификаторов, которые обучаются на карьерном пути Data Science
+-- Displaying custom IDs who are trained in the Data Science career path
 SELECT DISTINCT user_id
 	FROM career_paths_users 
 	JOIN career_paths
@@ -50,7 +50,7 @@ SELECT DISTINCT user_id
 		AND career_paths_name = 'Data Scientist';
 
 
--- Вывод пользователей, которые обучаются на карьерных путях Front-End Engineer и Back-End Engineer
+-- Displaying users who are trained on the career paths Front-End Engineer and Back-End Engineer
 SELECT DISTINCT CONCAT(first_name, ' ', last_name) AS fullname, career_paths_name 
 	FROM users 
 	JOIN career_paths_users 
@@ -60,8 +60,7 @@ SELECT DISTINCT CONCAT(first_name, ' ', last_name) AS fullname, career_paths_nam
 		AND career_paths_name = 'Front-End Engineer' OR career_paths_name = 'Back-End Engineer';
 
 	
--- Вывод количества курсов, которые брали пользователи (получили 68 строк, следовательно 32 
--- пользователя не участвуют ни в одном из курсов)
+-- Display of the number of courses that users took (received 68 lines, therefore 32 users do not participate in any of the courses)
 SELECT user_id, COUNT(courses.course_name) AS number_of_courses_taken
 	FROM users 
 	JOIN courses_users
@@ -71,14 +70,10 @@ SELECT user_id, COUNT(courses.course_name) AS number_of_courses_taken
 	GROUP BY user_id;
 
 
--- Группировка курсов по направлению, вывод количества курсов
+-- Grouping courses by direction, displaying the number of courses
 SELECT subject_id, subjects.subject_name, COUNT(*) AS number_of_courses
 	FROM courses
 	JOIN subjects 
 		ON subjects.id = courses.subject_id 
 	GROUP BY subject_id
 	ORDER BY subject_id;
-
-
-
-
