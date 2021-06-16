@@ -112,6 +112,3 @@ CREATE TABLE course_features (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   feature_name VARCHAR(255) NOT NULL UNIQUE COMMENT "название особенности"
 );
-
-
-
