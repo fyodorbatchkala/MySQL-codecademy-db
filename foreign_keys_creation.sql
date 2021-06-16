@@ -1,4 +1,4 @@
--- Таблица profiles
+-- Profiles table
 
 DESC profiles;
 ALTER TABLE profiles
@@ -7,7 +7,7 @@ ALTER TABLE profiles
       ON DELETE CASCADE;
       
 
--- Таблица courses
+-- Courses table
 
 DESC courses;
 ALTER TABLE courses
@@ -31,7 +31,7 @@ ALTER TABLE courses
       ON DELETE CASCADE;
      
      
--- Таблица posts
+-- Posts table
      
 DESC posts;
 
@@ -51,7 +51,7 @@ ALTER TABLE posts
       ON DELETE CASCADE;
      
      
--- Таблица career_paths
+-- Career_paths table
 
 DESC career_paths_users;
 
@@ -61,7 +61,7 @@ ALTER TABLE career_paths_users
       ON DELETE CASCADE;
      
 
--- Таблица courses_users
+-- Courses_users table
 
 DESC courses_users;
 
@@ -69,7 +69,3 @@ ALTER TABLE courses_users
   ADD CONSTRAINT courses_users_user_id_fk 
     FOREIGN KEY (user_id) REFERENCES users(id)
       ON DELETE CASCADE;
-     
- 
-     
-      
